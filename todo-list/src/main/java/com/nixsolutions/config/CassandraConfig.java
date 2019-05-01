@@ -14,10 +14,6 @@ import com.datastax.driver.core.PlainTextAuthProvider;
 
 @Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
-	@Value("${cassandra.host}")
-	private String CASSANDRA_HOST;
-	@Value("${cassandra.port}")
-	private int CASSANDRA_PORT;
 	@Value("${cassandra.entity.package}")
 	private String ENTITY_PACKAGE;
 	@Value("${spring.data.cassandra.keyspace-name}")
@@ -36,8 +32,6 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 	public CassandraClusterFactoryBean cluster() {
 		CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
 		cluster.setAuthProvider(new PlainTextAuthProvider(USERNAME, PASSWORD));
-		cluster.setContactPoints(CASSANDRA_HOST);
-		cluster.setPort(CASSANDRA_PORT);
 		cluster.setUsername(USERNAME);
 		cluster.setPassword(PASSWORD);
 		cluster.setKeyspaceCreations(singletonList(CreateKeyspaceSpecification.createKeyspace(KEYSPACE).ifNotExists()

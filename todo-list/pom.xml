@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nixsolutions</groupId>
-	<artifactId>docker-compose-synchronized</artifactId>
+	<artifactId>todo-list</artifactId>
 	<version>1.0</version>
 	<name>webService-2</name>
 	<description>Demo project for Spring Boot</description>
@@ -39,7 +39,10 @@
 			<artifactId>metrics-core</artifactId>
 			<version>3.0.2</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
@@ -52,8 +55,19 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
-
 	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
