@@ -10,14 +10,27 @@ import com.datastax.driver.core.utils.UUIDs;
 
 import lombok.Data;
 
+@Data
 @Table(value = "todo")
-public @Data class Todo {
+public class Todo {
 	@PrimaryKey
-	private UUID id;
+	private UUID id = UUIDs.timeBased();
 	@Indexed
 	private String name;
-	
-	public Todo() {
-		this.id = UUIDs.timeBased();
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
